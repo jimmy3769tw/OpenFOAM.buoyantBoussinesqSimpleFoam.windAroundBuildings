@@ -1,0 +1,169 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1612+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+	
+	version		4.0;
+	format		ascii;
+	class		dictionary;
+	location	"system";
+	object		snappyHexMeshDict;
+	
+}
+
+castellatedMesh		true;
+snap		true;
+addLayers		false;
+geometry
+{
+	
+	wallSTL.stl
+	{
+		
+		type		triSurfaceMesh;
+		name		wallSTL;
+		wallSTL
+		{
+			
+			regions
+			{
+				name		wallSTL;
+			}
+			
+		/*
+		refinementBox
+		{
+			type box;
+			min  (-450 -510 0);
+			max  (450 510 50);
+		}	
+		*/
+		}
+
+		
+	}
+	
+	
+}
+
+castellatedMeshControls
+{
+	
+	maxLocalCells		100000;
+	maxGlobalCells		1000000;
+	minRefinementCells		10;
+	maxLoadUnbalance		0.1;
+	nCellsBetweenLevels		3;
+	features
+	(
+		{file "wallSTL.eMesh"; level 1;}
+	);
+	
+	refinementSurfaces
+	{
+		
+		wallSTL
+		{
+			
+			level (3 3);
+			patchInfo{type wall;}	
+		}
+		
+		
+	}
+	
+	resolveFeatureAngle		60;
+	refinementRegions
+	{
+	/*
+        refinementBox
+        {
+            mode inside;
+            levels ((1E15 2));
+        }	
+	*/	
+	}
+	
+	locationInMesh (0 0 600);
+	allowFreeStandingZoneFaces		true;
+	
+}
+
+snapControls
+{
+	
+	nSmoothPatch		3;
+	tolerance		2.0;
+	nSolveIter		30;
+	nRelaxIter		5;
+	nFeatureSnapIter		10;
+	implicitFeatureSnap		false;
+	explicitFeatureSnap		true;
+	multiRegionFeatureSnap		false;
+	
+}
+
+addLayersControls
+{
+	
+	relativeSizes		yes;
+	layers
+	{
+		
+		
+	}
+	
+	expansionRatio		1.1;
+	finalLayerThickness		0.3;
+	minThickness		0.1;
+	nGrow		0;
+	featureAngle		130;
+	nRelaxIter		5;
+	nSmoothSurfaceNormals		1;
+	nSmoothThickness		10;
+	nSmoothNormals		3;
+	maxFaceThicknessRatio		0.5;
+	maxThicknessToMedialRatio		0.3;
+	minMedianAxisAngle		90;
+	nBufferCellsNoExtrude		0;
+	nLayerIter		50;
+	nRelaxedIter		20;
+	
+}
+
+meshQualityControls
+{
+	
+	maxNonOrtho		60;
+	maxBoundarySkewness		20;
+	maxInternalSkewness		4;
+	maxConcave		80;
+	minFlatness		0.5;
+	minVol		1E-13;
+	minTetQuality		1E-15;
+	minArea		-1;
+	minTwist		0.02;
+	minDeterminant		0.001;
+	minFaceWeight		0.05;
+	minVolRatio		0.01;
+	minTriangleTwist		-1;
+	nSmoothScale		4;
+	errorReduction		0.75;
+	relaxed
+	{
+		
+		maxNonOrtho		75;
+		
+	}
+	
+	
+}
+
+debug		0;
+mergeTolerance		1E-06;

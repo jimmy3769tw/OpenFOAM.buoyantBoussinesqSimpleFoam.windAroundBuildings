@@ -1,0 +1,48 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1612+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+	
+	version		4.0;
+	format		ascii;
+	class		volScalarField;
+	location	"0";
+	object		T;
+	
+}
+
+dimensions [0 0 0 1 0 0 0];
+internalField		uniform 293.15;
+boundaryField
+{
+	
+    inlet
+    {
+    	type			zeroGradient;
+	}
+
+    outlet
+    {
+    	type			zeroGradient;
+		/*
+		type			totalTemperature;
+		gamma           1.4; // air  = 1.4 (heat capacity ratio)
+		T0              uniform 800;
+		*/
+    }
+
+    wall
+    {
+   		type			fixedValue;
+		value uniform		303.15;
+	}	
+
+
+	 #includeEtc "caseDicts/setConstraintTypes"
+}

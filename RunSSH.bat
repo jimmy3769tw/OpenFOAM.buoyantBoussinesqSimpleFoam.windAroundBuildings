@@ -1,0 +1,4 @@
+ssh -p 31022 -t hpcmdjur@visent.hlrs.de mkdir -p /mnt/raid/home/hpcmdjur/OpenFOAMRemote/
+scp -P 31022 -r c:\tmp\foamCampus.zip hpcmdjur@visent.hlrs.de:/mnt/raid/home/hpcmdjur/OpenFOAMRemote/
+ssh -p 31022 -t hpcmdjur@visent.hlrs.de "shopt -s expand_aliases ; source ~/.bash_aliases; eval of2012; mkdir /mnt/raid/home/hpcmdjur/OpenFOAMRemote/foamCampus; cd /mnt/raid/home/hpcmdjur/OpenFOAMRemote/; unzip foamCampus.zip -d /mnt/raid/home/hpcmdjur/OpenFOAMRemote/foamCampus; rm foamCampus.zip; cd /mnt/raid/home/hpcmdjur/OpenFOAMRemote/foamCampus; chmod +x ./Allrun; chmod +x ./Allclean; ./Allclean; eval salloc -n 16 -c 16 ./Allrun;rm -r processor*;cd /mnt/raid/home/hpcmdjur/OpenFOAMRemote/;zip -r foamCampus.zip foamCampus;"
+scp -P 31022 -r hpcmdjur@visent.hlrs.de:/mnt/raid/home/hpcmdjur/OpenFOAMRemote/foamCampus.zip c:\tmp\foamCampus_result.zip

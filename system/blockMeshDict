@@ -1,0 +1,122 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1612+                                |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+	
+	version		4.0;
+	format		ascii;
+	class		dictionary;
+	location	"system";
+	object		blockMeshDict;
+	
+}
+
+backgroundMesh
+{
+    xMin   -810; // L = 350
+    xMax   810;
+    yMin  -550; // L = 280
+    yMax  550;
+    zMin   0;
+    zMax   700;
+    xCells  500;
+    yCells  300;
+    zCells  400;
+}
+
+
+vertices
+(
+    ($:backgroundMesh.xMin $:backgroundMesh.yMin $:backgroundMesh.zMin)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMin $:backgroundMesh.zMin)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMax $:backgroundMesh.zMin)
+    ($:backgroundMesh.xMin $:backgroundMesh.yMax $:backgroundMesh.zMin)
+
+    ($:backgroundMesh.xMin $:backgroundMesh.yMin $:backgroundMesh.zMax)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMin $:backgroundMesh.zMax)
+    ($:backgroundMesh.xMax $:backgroundMesh.yMax $:backgroundMesh.zMax)
+    ($:backgroundMesh.xMin $:backgroundMesh.yMax $:backgroundMesh.zMax)
+);
+
+blocks
+(
+	
+	hex (0 1 2 3 4 5 6 7) (450 510 100)
+	simpleGrading (1 1 1)
+	
+);
+
+edges
+(
+	
+	
+);
+
+boundary
+(
+	
+	frontAndBack
+	{
+		type		symmetry;
+		faces
+		(
+			(1 2 5 6)		
+			(0 3 7 4)	
+		);
+		
+	}
+	inlet
+	{
+		type		patch;
+		faces
+		(
+			
+			(0 4 5 1)	
+		);
+		
+	}
+	outlet
+	{
+		type		patch;
+		faces
+		(
+			
+			(3 2 6 7)	
+		);
+		
+	}
+	lowerWall
+	{
+		type		wall;
+		faces
+		(
+			
+			(0 1 2 3)
+			
+		);
+		}
+	upperWall
+	{
+		type		symmetry;
+		faces
+		(
+			
+			(4 7 6 5)	
+		);
+		
+	}
+	
+);
+
+mergePatchPair
+(
+	
+	
+);
+
