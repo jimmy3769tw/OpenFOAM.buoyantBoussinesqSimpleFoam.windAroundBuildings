@@ -1,0 +1,6 @@
+processor*
+*.out
+constant/polyMesh/*
+log.*
+constant/triSurface/wallSTL.eMesh
+constant/extendedFeatureEdgeMesh/*
