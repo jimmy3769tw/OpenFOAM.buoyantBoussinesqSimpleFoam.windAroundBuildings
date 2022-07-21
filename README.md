@@ -1,5 +1,9 @@
 # OpenFOAM.buoyantBoussinesqSimpleFoam.windAroundBuildings
 
+## Abstract
+
+可以看到 OpenFOAM 官方練習檔案有一個檔案 叫做 `windAroundBuildings` 在資料夾 `$FOAM_TUTORIALS/incompressible/simpleFoam` ，這是一個很棒的範例模擬都市流場模擬，可惜 simpleFOAM 並沒有考慮到能量方程式。往往我們會很好奇溫度場影響，因此使用 solver `buoyantBoussinesqSimpleFoam` 重新模擬，平行計算使用在 `
+snappyHexMesh` 以及 `buoyantBoussinesqSimpleFoam`
 
 ## 0.Results
 
