@@ -3,7 +3,7 @@
 ## Abstract
 
 可以看到 OpenFOAM 官方練習檔案有一個檔案 叫做 `windAroundBuildings` 在資料夾 `$FOAM_TUTORIALS/incompressible/simpleFoam` ，這是一個很棒的範例模擬都市流場模擬，可惜 simpleFOAM 並沒有考慮到能量方程式。溫度場影響往往在都市風場佔很大的影響，Boussinesq假設使得求解穩定，因此使用 solver `buoyantBoussinesqSimpleFoam` 重新模擬，平行計算技巧使用在 `
-snappyHexMesh` 以及 `buoyantBoussinesqSimpleFoam` 。 結果產生在位於斯圖加特的計算中心的 HPC cluster 上計算，且收斂至穩態。
+snappyHexMesh` 以及 `buoyantBoussinesqSimpleFoam` 。 結果產生在位於斯圖加特的計算中心的 HPC cluster 上計算，且收斂至穩態。模型使用 mapBox 資料庫，3d data 位於熟悉的台北信義區，豪不意外中間高聳建築為101。
 
 ## 0.Results
 
